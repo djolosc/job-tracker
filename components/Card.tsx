@@ -5,13 +5,19 @@ import { useDraggable } from "@dnd-kit/core";
 
 interface CardProps {
   children?: React.ReactNode;
+  id: string;
+  parent: string;
 }
 
-const Card: FC<CardProps> = ({ children }) => {
+const Card: FC<CardProps> = ({ children, id, parent }) => {
   const [mounted, setMounted] = useState(false);
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: "draggable",
+    id: id,
+    data: {
+      id: id,
+      parent: parent,
+    },
   });
 
   const style = transform
@@ -32,7 +38,7 @@ const Card: FC<CardProps> = ({ children }) => {
       {...attributes}
       className="p-4 bg-amber-400 rounded text-zinc-700 w-36 h-36"
     >
-      {children}
+      My id is number {id}
     </div>
   );
 };

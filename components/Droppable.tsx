@@ -19,7 +19,7 @@ const Droppable: FC<DroppableProps> = ({ children, id }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="p-4 bg-zinc-200 rounded text-zinc-700 w-40 h-40 flex items-center justify-center"
+      className="p-4 bg-zinc-200 rounded text-zinc-700 w-40 flex flex-col items-center justify-start gap-2"
     >
       {children}
     </div>
