@@ -1,11 +1,15 @@
 "use client";
+import Modal from "@/components/AddNewCardModal";
 import Card from "@/components/Card";
 import Droppable from "@/components/Droppable";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useState } from "react";
 
 const Home = () => {
-  const [cards, setCards] = useState([{ parent: "0", id: "0" }]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cards, setCards] = useState([
+    { parent: "0", id: "0", taskName: "Test" },
+  ]);
   const containers = ["0", "1", "2", "3"];
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -25,8 +29,15 @@ const Home = () => {
   const findCards = (id: string) => cards.filter((card) => card.parent === id);
 
   const onButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalSubmit = (formData: { taskName: string }) => {
     const newCardId = cards.length.toString();
-    setCards((cards) => [...cards, { id: newCardId, parent: "0" }]);
+    setCards((cards) => [
+      ...cards,
+      { id: newCardId, parent: "0", taskName: formData.taskName },
+    ]);
   };
 
   return (
@@ -36,13 +47,25 @@ const Home = () => {
           {containers.map((id) => (
             <Droppable key={id} id={id}>
               {findCards(id).map((card) => (
-                <Card id={card.id} key={card.id} parent={card.parent} />
+                <Card
+                  id={card.id}
+                  key={card.id}
+                  parent={card.parent}
+                  taskName={card.taskName}
+                />
               ))}
             </Droppable>
           ))}
         </div>
       </DndContext>
-      <button onClick={onButtonClick}>Add a new card</button>
+      <button onClick={onButtonClick} className="text-white">
+        Add a new card
+      </button>
+      <Modal
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleModalSubmit}
+        isOpen={isModalOpen}
+      />
     </div>
   );
 };

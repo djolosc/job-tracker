@@ -7,9 +7,10 @@ interface CardProps {
   children?: React.ReactNode;
   id: string;
   parent: string;
+  taskName: string;
 }
 
-const Card: FC<CardProps> = ({ children, id, parent }) => {
+const Card: FC<CardProps> = ({ taskName, id, parent }) => {
   const [mounted, setMounted] = useState(false);
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -38,7 +39,7 @@ const Card: FC<CardProps> = ({ children, id, parent }) => {
       {...attributes}
       className="p-4 bg-amber-400 rounded text-zinc-700 w-36 h-36"
     >
-      My id is number {id}
+      {taskName}
     </div>
   );
 };
