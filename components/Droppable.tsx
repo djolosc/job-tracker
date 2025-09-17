@@ -19,9 +19,10 @@ const Droppable: FC<DroppableProps> = ({ children, id }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="p-4 bg-zinc-200 rounded text-zinc-700 w-40 flex flex-col items-center justify-start gap-2"
+      className="bg-zinc-200 rounded w-40 flex flex-col items-center flex-1"
     >
-      {children}
+      <p>Headline</p>
+      <div className="flex-1 overflow-y flex flex-col gap-2">{children}</div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Home = () => {
   const [cards, setCards] = useState([
     { parent: "0", id: "0", taskName: "Test" },
   ]);
-  const containers = ["0", "1", "2", "3"];
+  const containers = ["0", "1", "2", "3", "4", "5"];
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { over } = event;
@@ -41,25 +41,27 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white h-screen flex flex-col items-center justify-center">
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex gap-4 mb-4">
+        <div className="flex gap-4 mt-32 bg-amber-400 flex-1 overflow-y-auto h-96">
           {containers.map((id) => (
-            <Droppable key={id} id={id}>
-              {findCards(id).map((card) => (
-                <Card
-                  id={card.id}
-                  key={card.id}
-                  parent={card.parent}
-                  taskName={card.taskName}
-                />
-              ))}
-            </Droppable>
+            <div className="bg-cyan-700 flex flex-1 h-full flex-col" key={id}>
+              <Droppable key={id} id={id}>
+                {findCards(id).map((card) => (
+                  <Card
+                    id={card.id}
+                    key={card.id}
+                    parent={card.parent}
+                    taskName={card.taskName}
+                  />
+                ))}
+              </Droppable>
+            </div>
           ))}
         </div>
       </DndContext>
-      <button onClick={onButtonClick} className="text-white">
-        Add a new card
+      <button onClick={onButtonClick} className="text-black">
+        Add a job
       </button>
       <Modal
         onClose={() => setIsModalOpen(false)}
