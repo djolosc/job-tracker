@@ -25,10 +25,10 @@ const AddNewCardModal: FC<AddNewCardModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center ">
-      <div className="bg-white p-6 rounded-xl shadow-lg relative w-[400px]">
+      <div className="bg-gray-100 p-6 rounded-xl shadow-lg relative w-[400px]">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-black hover:text-black"
+          className="absolute top-2 right-2 text-black hover:text-black hover:cursor-pointer"
         >
           ✕
         </button>
@@ -46,7 +46,7 @@ const AddNewCardModal: FC<AddNewCardModalProps> = ({
 
           <button
             type="submit"
-            className="mt-2 px-4 py-2 bg-green-600 text-white rounded-lg"
+            className="mt-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:cursor-pointer"
           >
             Submit
           </button>

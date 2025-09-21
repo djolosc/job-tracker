@@ -5,9 +5,14 @@ import { FC } from "react";
 interface DroppableProps {
   children?: React.ReactNode;
   id: string;
+  headlineDetails: {
+    name: string;
+    bgColor: string;
+    color: string;
+  };
 }
 
-const Droppable: FC<DroppableProps> = ({ children, id }) => {
+const Droppable: FC<DroppableProps> = ({ children, id, headlineDetails }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: id,
   });
@@ -19,10 +24,14 @@ const Droppable: FC<DroppableProps> = ({ children, id }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-zinc-200 rounded w-40 flex flex-col items-center flex-1"
+      className="w-50 flex flex-col items-center rounded-2xl bg-white"
     >
-      <p>Headline</p>
-      <div className="flex-1 overflow-y flex flex-col gap-2">{children}</div>
+      <p
+        className={`font-semibold text-3xl p-4 ${headlineDetails.bgColor} ${headlineDetails.color} w-full rounded-t-2xl`}
+      >
+        {headlineDetails.name}
+      </p>
+      <div className=" flex flex-col gap-2 py-4 min-h-50">{children}</div>
     </div>
   );
 };

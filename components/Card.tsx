@@ -37,9 +37,9 @@ const Card: FC<CardProps> = ({ taskName, id, parent }) => {
       style={style}
       {...listeners}
       {...attributes}
-      className="p-4 bg-amber-400 rounded text-zinc-700 w-36 h-36"
+      className="p-4 bg-gray-50 rounded-lg text-zinc-700 w-44 h-20"
     >
-      {taskName}
+      <p className="text-xl font-semibold ">{taskName}</p>
     </div>
   );
 };
